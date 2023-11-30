@@ -1,2 +1,2 @@
-# intelligente-landwirtschaft
-A smart farming prototype
+# intelligente-landwirtschaft-backend
+Backend for a smart farming prototype
