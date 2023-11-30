@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import cors, { CorsOptions } from 'cors';
 import Routes from './routes';
+import db from '../config/db';
 
 export default class App {
   constructor(app: Application) {
@@ -16,5 +17,6 @@ export default class App {
     app.use(cors(corsOptions));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
+    db();
   }
 }
