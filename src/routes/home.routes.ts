@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { home } from '../controllers/home.controller';
+import { getSeeds, getSeedById, createSeed, updateSeed, deleteSeed } from '../controllers/seedController';
 
 class HomeRoutes {
   router = Router();
@@ -10,6 +11,11 @@ class HomeRoutes {
 
   intializeRoutes() {
     this.router.get('/', home);
+    this.router.get('/seeds', getSeeds);
+    this.router.get('/seeds/:id', getSeedById);
+    this.router.post('/seeds', createSeed);
+    this.router.put('/seeds/:id', updateSeed);
+    this.router.delete('/seeds/:id', deleteSeed);
   }
 }
 

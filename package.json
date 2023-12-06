@@ -2,8 +2,8 @@
 	"name": "intelligente-landwirtschaft-backend",
 	"version": "1.0.0",
 	"prisma": {
-        "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/seeders/seed.ts"
-    },
+		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} src/seeders/seed.ts"
+	},
 	"description": "Backend for a smart farming prototype",
 	"main": "index.js",
 	"scripts": {
