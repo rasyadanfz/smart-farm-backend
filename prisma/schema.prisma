@@ -6,3 +6,14 @@ datasource db {
     provider = "mongodb"
     url      = env("DATABASE_URL")
 }
+
+model Seed {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    name String
+    stock Int
+    soil_moisture Float
+    air_temperature Float
+    air_humidity Float
+    air_pressure Float
+    pH Float
+}
