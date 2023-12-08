@@ -6,6 +6,7 @@ import {
   getMonitorLogsByFieldId,
   updateMonitorLog
 } from '../controllers/monitor.controller';
+import { authorization } from '../middleware/authorization';
 
 class MonitorRoutes {
   router = Router();
@@ -17,9 +18,9 @@ class MonitorRoutes {
   intializeRoutes() {
     this.router.get('/', getMonitorLogs);
     this.router.get('/:fieldId', getMonitorLogsByFieldId);
-    this.router.post('/', createMonitorLog);
-    this.router.put('/:id', updateMonitorLog);
-    this.router.delete('/:id', deleteMonitorLog);
+    this.router.post('/', authorization, createMonitorLog);
+    this.router.put('/:id', authorization, updateMonitorLog);
+    this.router.delete('/:id', authorization, deleteMonitorLog);
   }
 }
 

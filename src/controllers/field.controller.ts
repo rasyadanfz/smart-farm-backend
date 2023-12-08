@@ -81,7 +81,10 @@ export async function updateField(
 ): Promise<Response> {
   try {
     const currentSeedId = req.body.currentSeedId;
-    const isPlanted = currentSeedId !== undefined;
+    let isPlanted: boolean = true;
+
+    if (currentSeedId === null || currentSeedId === undefined)
+      isPlanted = false;
 
     const response = await prisma.field.update({
       where: {

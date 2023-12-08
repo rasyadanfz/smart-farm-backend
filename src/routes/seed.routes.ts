@@ -6,6 +6,7 @@ import {
   updateSeed,
   deleteSeed
 } from '../controllers/seed.controller.ts';
+import { authorization } from '../middleware/authorization';
 
 class SeedRoutes {
   router = Router();
@@ -17,9 +18,9 @@ class SeedRoutes {
   intializeRoutes() {
     this.router.get('/', getSeeds);
     this.router.get('/:id', getSeedById);
-    this.router.post('/', createSeed);
-    this.router.put('/:id', updateSeed);
-    this.router.delete('/:id', deleteSeed);
+    this.router.post('/', authorization, createSeed);
+    this.router.put('/:id', authorization, updateSeed);
+    this.router.delete('/:id', authorization, deleteSeed);
   }
 }
 
