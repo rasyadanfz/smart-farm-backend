@@ -5,7 +5,7 @@ import {
   createSeed,
   updateSeed,
   deleteSeed
-} from '../controllers/seed.controller.ts';
+} from '../controllers/seed.controller';
 import { authorization } from '../middleware/authorization';
 
 class SeedRoutes {
