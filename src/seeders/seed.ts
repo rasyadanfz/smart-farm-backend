@@ -1,9 +1,10 @@
 import prisma from '../../prismaSingleton/prismaSingleClient';
 
 function addHours(date: Date, hours: any) {
-  date.setTime(date.getTime() + hours * 60 * 60 * 1000);
+  const changeableDate = date;
+  changeableDate.setTime(changeableDate.getTime() + hours * 60 * 60 * 1000);
 
-  return date;
+  return changeableDate;
 }
 
 async function seedSeeder() {
@@ -67,23 +68,27 @@ async function monitorLogSeeder() {
   const time = new Date();
 
   for (let i = 0; i < fieldIds.length; i++) {
-    for (let j=0; j<10; j++) {
-        const res = await prisma.monitor.create({
-          data: {
-            monitoredFieldId: fieldIds[i].id,
-            soil_moisture: Math.floor(Math.random() * 90) + 1,
-            air_temperature: Math.floor(Math.random() * 46) + 11,
-            air_humidity: Math.floor(Math.random() * 96) + 0.6,
-            air_pressure: Math.floor(Math.random() * 102) + 101,
-            pH: Math.floor(Math.random() * 10) + 3.5,
-            timePosted: addHours(time, j)
-          }
-        });
+    for (let j = 0; j < 10; j++) {
+      const res = await prisma.monitor.create({
+        data: {
+          monitoredFieldId: fieldIds[i].id,
+          soil_moisture: Math.floor(Math.random() * 90) + 1,
+          air_temperature: Math.floor(Math.random() * 46) + 11,
+          air_humidity: Math.floor(Math.random() * 96) + 0.6,
+          air_pressure: Math.floor(Math.random() * 102) + 101,
+          pH: Math.floor(Math.random() * 10) + 3.5,
+          timePosted: addHours(time, 1)
+        }
+      });
     }
   }
 }
 
 async function main() {
+  await prisma.monitor.deleteMany({});
+  await prisma.field.deleteMany({});
+  await prisma.seed.deleteMany({});
+
   await seedSeeder();
   await fieldSeeder();
   await monitorLogSeeder();
