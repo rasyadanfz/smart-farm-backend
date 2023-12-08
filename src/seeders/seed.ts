@@ -9,14 +9,15 @@ function addHours(date: Date, hours: any) {
 
 async function seedSeeder() {
   const bibit = ['sawi', 'bayam', 'cabai', 'tomat', 'mangga', 'kangkung'];
-  const randomStock = Math.floor(Math.random() * 100) + 1;
-  const randomSoilMoisture = Math.floor(Math.random() * 90) + 1;
-  const randommAirTemperature = Math.floor(Math.random() * 46) + 11;
-  const randomAirHumidity = Math.floor(Math.random() * 96) + 0.6;
-  const randomAirPressure = Math.floor(Math.random() * 102) + 101;
-  const randomPH = Math.floor(Math.random() * 10) + 3.5;
-
+  
   for (let i = 0; i < bibit.length; i++) {
+    const randomStock = Math.floor(Math.random() * 100) + 1;
+    const randomSoilMoisture = parseFloat((Math.random() * 90 + 1).toFixed(2));
+    const randommAirTemperature = parseFloat((Math.random() * 15 + 20).toFixed(2));
+    const randomAirHumidity = parseFloat((Math.random() * 96 + 0.6).toFixed(2));
+    const randomAirPressure = parseFloat((Math.random() * 102 + 101).toFixed(2));
+    const randomPH = parseFloat((Math.random() * 7 + 5).toFixed(2));
+    
     await prisma.seed.create({
       data: {
         name: bibit[i],
