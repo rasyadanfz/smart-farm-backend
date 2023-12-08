@@ -16,4 +16,27 @@ model Seed {
     air_humidity Float
     air_pressure Float
     pH Float
+    fields Field[]
+}
+
+model Field {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    numberId Int
+    name String @unique
+    isPlanted Boolean
+    currentSeedId String? @db.ObjectId
+    currentSeed Seed? @relation(fields: [currentSeedId], references: [id])
+    monitorLogs Monitor[]
+}
+
+model Monitor {
+    id String @id @default(auto()) @map("_id") @db.ObjectId
+    monitoredFieldId String? @db.ObjectId
+    monitoredField Field? @relation(fields: [monitoredFieldId], references: [id])
+    soil_moisture Float
+    air_temperature Float
+    air_humidity Float
+    air_pressure Float
+    pH Float
+    timePosted DateTime @default(now())
 }

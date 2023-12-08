@@ -1,6 +1,12 @@
 import { Router } from 'express';
 import { home } from '../controllers/home.controller';
-import { getSeeds, getSeedById, createSeed, updateSeed, deleteSeed } from '../controllers/seedController';
+import {
+  getSeeds,
+  getSeedById,
+  createSeed,
+  updateSeed,
+  deleteSeed
+} from '../controllers/seed.controller.ts';
 
 class HomeRoutes {
   router = Router();
