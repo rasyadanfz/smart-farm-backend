@@ -68,6 +68,8 @@ async function monitorLogSeeder() {
   const time = new Date();
 
   for (let i = 0; i < fieldIds.length; i++) {
+    
+
     for (let j = 0; j < 10; j++) {
       const res = await prisma.monitor.create({
         data: {
