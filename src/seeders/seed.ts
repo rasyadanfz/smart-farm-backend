@@ -48,7 +48,7 @@ async function fieldSeeder() {
     await prisma.field.create({
       data: {
         name: `Lahan ${String.fromCharCode(65 + i)}`,
-        numberId: i,
+        numberId: i+1,
         isPlanted,
         currentSeedId
       }
