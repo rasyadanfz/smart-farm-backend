@@ -12,15 +12,15 @@ async function seedSeeder() {
 
   for (let i = 0; i < bibit.length; i++) {
     const randomStock = Math.floor(Math.random() * 100) + 1;
-    const randomSoilMoisture = parseFloat((Math.random() * 90 + 1).toFixed(2));
+    const randomSoilMoisture = parseFloat((Math.random() * 25 + 65).toFixed(2));
     const randommAirTemperature = parseFloat(
-      (Math.random() * 15 + 20).toFixed(2)
+      (Math.random() * 17 + 20).toFixed(2)
     );
-    const randomAirHumidity = parseFloat((Math.random() * 96 + 0.6).toFixed(2));
+    const randomAirHumidity = parseFloat((Math.random() * 25 + 70).toFixed(2));
     const randomAirPressure = parseFloat(
-      (Math.random() * 102 + 101).toFixed(2)
+      (Math.random() * 5 + 100).toFixed(2)
     );
-    const randomPH = parseFloat((Math.random() * 7 + 5).toFixed(2));
+    const randomPH = parseFloat((Math.random() * 6 + 5).toFixed(2));
 
     await prisma.seed.create({
       data: {
@@ -72,18 +72,18 @@ async function monitorLogSeeder() {
   
   for (let i = 0; i < fieldIds.length; i++) {
     const time = new Date();
-    let soil_moisture = parseFloat((Math.random() * 90 + 1).toFixed(2));
-    let air_temperature = parseFloat((Math.random() * 46 + 11).toFixed(2));
-    let air_humidity = parseFloat((Math.random() * 96 + 0.6).toFixed(2));
-    let air_pressure = parseFloat((Math.random() * 102 + 101).toFixed(2));
-    let pH = parseFloat((Math.random() * 10 + 3.5).toFixed(2));
+    let soil_moisture = parseFloat((Math.random() * 25 + 65).toFixed(2));
+    let air_temperature = parseFloat((Math.random() * 17 + 20).toFixed(2));
+    let air_humidity = parseFloat((Math.random() * 25 + 70).toFixed(2));
+    let air_pressure = parseFloat((Math.random() * 5 + 100).toFixed(2));
+    let pH = parseFloat((Math.random() * 6 + 5).toFixed(2));
 
     for (let j = 0; j < 10; j++) {
-      soil_moisture = Math.max(0, Math.round((soil_moisture + Math.floor(Math.random() * 10) - 5)*100)/100);
-      air_temperature = Math.max(0, Math.round((air_temperature + Math.floor(Math.random() * 10) - 5)*100)/100);
-      air_humidity = Math.max(0, Math.round((air_humidity + Math.floor(Math.random() * 10) - 5)*100)/100);
-      air_pressure = Math.max(0, Math.round((air_pressure + Math.floor(Math.random() * 10) - 5)*100)/100);
-      pH = Math.max(0, (Math.round(Math.max(5, Math.min(12, pH + Math.floor(Math.random() * 2) - 1)))*100)/100);
+      soil_moisture = Math.max(0, parseFloat((soil_moisture + Math.random() * 4 - 2).toFixed(2)));
+      air_temperature = Math.max(0, parseFloat((air_temperature + Math.random() * 4 - 2).toFixed(2)));
+      air_humidity = Math.max(0, parseFloat((air_humidity + Math.random() * 4 - 2).toFixed(2)));
+      air_pressure = Math.max(0, parseFloat((air_pressure + Math.random() * 4 - 2).toFixed(2)));
+      pH = parseFloat(Math.max(5, Math.min(12, pH + Math.random() * 2 - 1)).toFixed(2));
 
       const res = await prisma.monitor.create({
         data: {
