@@ -71,7 +71,7 @@ Service ini menyediakan API yang digunakan sebagai backend untuk aplikasi [Intel
 2. Masuk ke directory
 
 ```
-cd /intelligente-landwirtschaft-backend
+cd /smart-farm-backend
 ```
 
 3. Buat file .env yang berisikan
