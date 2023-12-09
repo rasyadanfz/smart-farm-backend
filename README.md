@@ -16,6 +16,7 @@
 3. [Tech Stack](#tech-stack)
 4. [How to Run](#how-to-run)
 5. [API Endpoints](#api-endpoints)
+6. [Deployment](#deployment)
 
 ## Description
 
@@ -83,6 +84,7 @@ SECRET_AUTH_KEY=<your_secret_token_for_frontend>
 4. Jalankan aplikasi menggunakan command berikut
 
 ```
+npm install
 npm run dev
 ```
 
@@ -119,3 +121,6 @@ npm run dev
 | 3   | POST        | /monitor          | Creates new monitor log in the database     |
 | 4   | PUT         | /monitor/:id      | Updates monitor log with id in the database |
 | 5   | DELETE      | /monitor/:id      | Deletes monitor log from the database       |
+
+### Deployment
+Buka deployment pada link https://intelligente-landwirtschaft-be.up.railway.app
