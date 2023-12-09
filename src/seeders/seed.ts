@@ -73,18 +73,18 @@ async function monitorLogSeeder() {
   const time = new Date();
 
   for (let i = 0; i < fieldIds.length; i++) {
-    let soil_moisture = Math.floor(Math.random() * 90) + 1;
-    let air_temperature = Math.floor(Math.random() * 46) + 11;
-    let air_humidity = Math.floor(Math.random() * 96) + 0.6;
-    let air_pressure = Math.floor(Math.random() * 102) + 101;
-    let pH = Math.floor(Math.random() * 10) + 3.5;
+    let soil_moisture = parseFloat((Math.random() * 90 + 1).toFixed(2));
+    let air_temperature = parseFloat((Math.random() * 46 + 11).toFixed(2));
+    let air_humidity = parseFloat((Math.random() * 96 + 0.6).toFixed(2));
+    let air_pressure = parseFloat((Math.random() * 102 + 101).toFixed(2));
+    let pH = parseFloat((Math.random() * 10 + 3.5).toFixed(2));
 
     for (let j = 0; j < 10; j++) {
-      soil_moisture = Math.round((soil_moisture + Math.floor(Math.random() * 10) - 5)*100)/100;
-      air_temperature = Math.round((air_temperature + Math.floor(Math.random() * 10) - 5)*100)/100;
-      air_humidity = Math.round((air_humidity + Math.floor(Math.random() * 10) - 5)*100)/100;
-      air_pressure = Math.round((air_pressure + Math.floor(Math.random() * 10) - 5)*100)/100;
-      pH = (Math.round(Math.max(5, Math.min(12, pH + Math.floor(Math.random() * 2) - 1)))*100)/100;
+      soil_moisture = Math.max(0, Math.round((soil_moisture + Math.floor(Math.random() * 10) - 5)*100)/100);
+      air_temperature = Math.max(0, Math.round((air_temperature + Math.floor(Math.random() * 10) - 5)*100)/100);
+      air_humidity = Math.max(0, Math.round((air_humidity + Math.floor(Math.random() * 10) - 5)*100)/100);
+      air_pressure = Math.max(0, Math.round((air_pressure + Math.floor(Math.random() * 10) - 5)*100)/100);
+      pH = Math.max(0, (Math.round(Math.max(5, Math.min(12, pH + Math.floor(Math.random() * 2) - 1)))*100)/100);
 
       const res = await prisma.monitor.create({
         data: {
