@@ -10,7 +10,18 @@ export default class App {
 
   private config(app: Application): void {
     const corsOptions: CorsOptions = {
-      origin: 'http://localhost:8000'
+      allowedHeaders: [
+        'Content-Type',
+        'Authorization',
+        'Access-Control-Allow-Origin',
+        'Origin'
+      ],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      origin: [
+        'https://intelligente-landwirtschaft-frontend.vercel.app',
+        'http://localhost:8000',
+        'http://localhost:5173'
+      ]
     };
 
     app.use(cors(corsOptions));
