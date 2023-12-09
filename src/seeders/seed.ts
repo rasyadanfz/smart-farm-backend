@@ -2,7 +2,7 @@ import prisma from '../../prismaSingleton/prismaSingleClient';
 
 function addHours(date: Date, hours: any) {
   const changeableDate = date;
-  changeableDate.setTime(changeableDate.getTime() + hours * 60 * 60 * 1000);
+  changeableDate.setTime(changeableDate.getTime() - hours * 60 * 60 * 1000);
 
   return changeableDate;
 }
