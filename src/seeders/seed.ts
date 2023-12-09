@@ -69,10 +69,9 @@ async function monitorLogSeeder() {
       id: true
     }
   });
-
-  const time = new Date();
-
+  
   for (let i = 0; i < fieldIds.length; i++) {
+    const time = new Date();
     let soil_moisture = parseFloat((Math.random() * 90 + 1).toFixed(2));
     let air_temperature = parseFloat((Math.random() * 46 + 11).toFixed(2));
     let air_humidity = parseFloat((Math.random() * 96 + 0.6).toFixed(2));
