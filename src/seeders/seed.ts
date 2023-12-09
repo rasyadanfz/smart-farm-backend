@@ -9,15 +9,19 @@ function addHours(date: Date, hours: any) {
 
 async function seedSeeder() {
   const bibit = ['sawi', 'bayam', 'cabai', 'tomat', 'mangga', 'kangkung'];
-  
+
   for (let i = 0; i < bibit.length; i++) {
     const randomStock = Math.floor(Math.random() * 100) + 1;
     const randomSoilMoisture = parseFloat((Math.random() * 90 + 1).toFixed(2));
-    const randommAirTemperature = parseFloat((Math.random() * 15 + 20).toFixed(2));
+    const randommAirTemperature = parseFloat(
+      (Math.random() * 15 + 20).toFixed(2)
+    );
     const randomAirHumidity = parseFloat((Math.random() * 96 + 0.6).toFixed(2));
-    const randomAirPressure = parseFloat((Math.random() * 102 + 101).toFixed(2));
+    const randomAirPressure = parseFloat(
+      (Math.random() * 102 + 101).toFixed(2)
+    );
     const randomPH = parseFloat((Math.random() * 7 + 5).toFixed(2));
-    
+
     await prisma.seed.create({
       data: {
         name: bibit[i],
@@ -48,7 +52,7 @@ async function fieldSeeder() {
     await prisma.field.create({
       data: {
         name: `Lahan ${String.fromCharCode(65 + i)}`,
-        numberId: i+1,
+        numberId: i,
         isPlanted,
         currentSeedId
       }
@@ -69,17 +73,27 @@ async function monitorLogSeeder() {
   const time = new Date();
 
   for (let i = 0; i < fieldIds.length; i++) {
-    
+    let soil_moisture = Math.floor(Math.random() * 90) + 1;
+    let air_temperature = Math.floor(Math.random() * 46) + 11;
+    let air_humidity = Math.floor(Math.random() * 96) + 0.6;
+    let air_pressure = Math.floor(Math.random() * 102) + 101;
+    let pH = Math.floor(Math.random() * 10) + 3.5;
 
     for (let j = 0; j < 10; j++) {
+      soil_moisture = Math.round((soil_moisture + Math.floor(Math.random() * 10) - 5)*100)/100;
+      air_temperature = Math.round((air_temperature + Math.floor(Math.random() * 10) - 5)*100)/100;
+      air_humidity = Math.round((air_humidity + Math.floor(Math.random() * 10) - 5)*100)/100;
+      air_pressure = Math.round((air_pressure + Math.floor(Math.random() * 10) - 5)*100)/100;
+      pH = (Math.round(Math.max(5, Math.min(12, pH + Math.floor(Math.random() * 2) - 1)))*100)/100;
+
       const res = await prisma.monitor.create({
         data: {
           monitoredFieldId: fieldIds[i].id,
-          soil_moisture: Math.floor(Math.random() * 90) + 1,
-          air_temperature: Math.floor(Math.random() * 46) + 11,
-          air_humidity: Math.floor(Math.random() * 96) + 0.6,
-          air_pressure: Math.floor(Math.random() * 102) + 101,
-          pH: Math.floor(Math.random() * 10) + 3.5,
+          soil_moisture,
+          air_temperature,
+          air_humidity,
+          air_pressure,
+          pH,
           timePosted: addHours(time, 1)
         }
       });
